@@ -36,6 +36,13 @@ func main() {
 	adminPass := flag.String("admin-pass", "anees3232@", "admin panel password")
 	flag.Parse()
 
+	// Railway / Heroku / Render inject $PORT and expect the app to bind it.
+	// When present, force server mode and bind that port so the deploy is reachable.
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		*serve = true
+		*addr = ":" + envPort
+	}
+
 	if *serve {
 		runServer(*addr, *apiKey, *proxy, *logPath, *maxRecords, *adminUser, *adminPass)
 		return
