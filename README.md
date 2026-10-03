@@ -23,7 +23,10 @@
 ![Fingerprint](https://img.shields.io/badge/profiles-5_captured-orange?style=flat-square)
 ![Targets](https://img.shields.io/badge/targets-walmart_%7C_ebay_%7C_kleinanzeigen-yellow?style=flat-square)
 
-**made by `1221672401910104157`**
+**made by [Seb](https://discord.com/users/1221672401910104157) · `seb.ian` · founder/dev of [vexsolver.com](https://vexsolver.com)**
+
+[![Discord](https://img.shields.io/badge/Discord-seb.ian-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/1221672401910104157)
+[![vexsolver](https://img.shields.io/badge/vexsolver.com-00D084?style=for-the-badge&logo=googlechrome&logoColor=white)](https://vexsolver.com)
 
 </div>
 
@@ -243,7 +246,11 @@ Real byte-for-byte hashes shipped in `fingerprint.go::CapturedEdge148WindowsProf
 
 <div align="center">
 
-**made by `1221672401910104157`**
+**made by [Seb](https://discord.com/users/1221672401910104157) — `seb.ian`**
+
+**founder / dev of [vexsolver.com](https://vexsolver.com)**
+
+`discord id: 1221672401910104157`
 
 *private project · not for redistribution*
 
