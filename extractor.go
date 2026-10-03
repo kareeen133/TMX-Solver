@@ -7,18 +7,18 @@ import (
 )
 
 type ScriptInfo struct {
-	CipherObj      string
-	CipherFn       string
-	DecryptCtor    string
-	DispatchObj    string
-	StringTable    map[string]string
-	FunctionTable  map[string]string
+	CipherObj     string
+	CipherFn      string
+	DecryptCtor   string
+	DispatchObj   string
+	StringTable   map[string]string
+	FunctionTable map[string]string
 }
 
 var (
-	rePrelude    = regexp.MustCompile(`var\s+(td_[A-Za-z0-9]+)=(td_[A-Za-z0-9]+)\|\|\{\};\s*(td_[A-Za-z0-9]+)\.(td_[A-Za-z0-9]+)=function\(([A-Za-z_0-9]+),([A-Za-z_0-9]+)\)\{try\{var\s+([A-Za-z_0-9]+)=\[""\];`)
-	reDispatch   = regexp.MustCompile(`(td_[A-Za-z0-9]+)\.(tdz_[a-f0-9]+)\s*=\s*new\s+(td_[A-Za-z0-9]+)\.(td_[A-Za-z0-9]+)\(`)
-	reTdzDef     = `\.tdz_([a-f0-9]+)\s*=\s*new\s+\S+\.td_[A-Za-z0-9]+\("`
+	rePrelude  = regexp.MustCompile(`var\s+(td_[A-Za-z0-9]+)=(td_[A-Za-z0-9]+)\|\|\{\};\s*(td_[A-Za-z0-9]+)\.(td_[A-Za-z0-9]+)=function\(([A-Za-z_0-9]+),([A-Za-z_0-9]+)\)\{try\{var\s+([A-Za-z_0-9]+)=\[""\];`)
+	reDispatch = regexp.MustCompile(`(td_[A-Za-z0-9]+)\.(tdz_[a-f0-9]+)\s*=\s*new\s+(td_[A-Za-z0-9]+)\.(td_[A-Za-z0-9]+)\(`)
+	reTdzDef   = `\.tdz_([a-f0-9]+)\s*=\s*new\s+\S+\.td_[A-Za-z0-9]+\("`
 )
 
 func ExtractScriptInfo(src string) (*ScriptInfo, error) {
@@ -160,7 +160,8 @@ func ExtractSubmissionTable(src string) *SubmissionTable {
 		}
 	}
 	if i := strings.Index(dec, "&i=2"); i >= 0 {
-		start := strings.LastIndex(dec[:i], "https://h64.online-metrix.net"); _ = start
+		start := strings.LastIndex(dec[:i], "https://h64.online-metrix.net")
+		_ = start
 		s2 := strings.LastIndex(dec[:i], "https://")
 		if s2 >= 0 {
 			t.H64Clear = dec[s2 : i+len("&i=2")]

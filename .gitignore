@@ -1,24 +1,21 @@
-# binaries
 *.exe
 *.exe~
 *.zip
 
-# runtime data
 requests.jsonl
 test_requests.jsonl
 test_requests2.jsonl
 apikeys.json
 chunks_dump.txt
 captures/
+*.log
+*.out
 
-# node
 node_modules/
 package-lock.json
 i.js
 
-# playwright
 .playwright-mcp/
 
-# IDE
 .vscode/
 .idea/

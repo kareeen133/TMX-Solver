@@ -7,9 +7,9 @@ import (
 	"io"
 	"strings"
 
+	fhttp "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/bogdanfinn/tls-client/profiles"
-	fhttp "github.com/bogdanfinn/fhttp"
 )
 
 func randUUID() string {

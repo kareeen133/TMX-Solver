@@ -166,21 +166,21 @@ func (s *Store) Stats() map[string]any {
 		avgUp = sumUp / int64(total)
 	}
 	return map[string]any{
-		"total":         total,
-		"ok":            ok,
-		"fail":          fail,
-		"tmx_accepted":  accepted,
-		"avg_solve_ms":  avgSolve,
+		"total":           total,
+		"ok":              ok,
+		"fail":            fail,
+		"tmx_accepted":    accepted,
+		"avg_solve_ms":    avgSolve,
 		"avg_upstream_ms": avgUp,
-		"last_24h":      last24,
+		"last_24h":        last24,
 	}
 }
 
 type APIServer struct {
-	addr     string
-	apiKey   string
-	proxy    string
-	store    *Store
+	addr      string
+	apiKey    string
+	proxy     string
+	store     *Store
 	adminUser string
 	adminPass string
 	keys      *KeyStore
@@ -433,12 +433,13 @@ func (a *APIServer) handleForward(w http.ResponseWriter, r *http.Request) {
 }
 
 type solveRequest struct {
-	OrgID   string `json:"org_id"`
-	Host    string `json:"host"`
-	Referer string `json:"referer"`
-	Profile string `json:"profile"`
-	Proxy   string `json:"proxy"`
-	Deep    bool   `json:"deep"`
+	OrgID     string `json:"org_id"`
+	SessionID string `json:"session_id"`
+	Host      string `json:"host"`
+	Referer   string `json:"referer"`
+	Profile   string `json:"profile"`
+	Proxy     string `json:"proxy"`
+	Deep      bool   `json:"deep"`
 }
 
 func (a *APIServer) handleSolve(w http.ResponseWriter, r *http.Request) {
@@ -473,9 +474,9 @@ func (a *APIServer) handleSolve(w http.ResponseWriter, r *http.Request) {
 	t0 := time.Now()
 	var sr *SolveResult
 	if req.Deep {
-		sr, err = solver.SolveDeep(req.OrgID, req.Host, "", req.Referer, false)
+		sr, err = solver.SolveDeep(req.OrgID, req.Host, req.SessionID, req.Referer, false)
 	} else {
-		sr, err = solver.Solve(req.OrgID, req.Host, req.Referer)
+		sr, err = solver.Solve(req.OrgID, req.Host, req.Referer, req.SessionID)
 	}
 	dur := time.Since(t0).Milliseconds()
 	out := map[string]any{
@@ -502,17 +503,17 @@ func (a *APIServer) handleSolve(w http.ResponseWriter, r *http.Request) {
 		out["tmx_accepted"] = sr.TmxAccepted
 	}
 	rec := &APIRecord{
-		ID:          newID(),
-		Time:        time.Now().UTC().Format(time.RFC3339),
-		UnixMs:      time.Now().UnixMilli(),
-		ClientIP:    clientIP(r),
-		Endpoint:    "/v1/solve",
-		OrgID:       req.OrgID,
-		Host:        req.Host,
-		Method:      "SOLVE",
-		Deep:        req.Deep,
-		SolveMs:     dur,
-		OK:          err == nil,
+		ID:       newID(),
+		Time:     time.Now().UTC().Format(time.RFC3339),
+		UnixMs:   time.Now().UnixMilli(),
+		ClientIP: clientIP(r),
+		Endpoint: "/v1/solve",
+		OrgID:    req.OrgID,
+		Host:     req.Host,
+		Method:   "SOLVE",
+		Deep:     req.Deep,
+		SolveMs:  dur,
+		OK:       err == nil,
 	}
 	if sr != nil {
 		rec.SessionID = sr.SessionID
@@ -521,7 +522,7 @@ func (a *APIServer) handleSolve(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		rec.Error = err.Error()
 	}
-	if (err != nil || sr == nil || !sr.TmxAccepted) {
+	if err != nil || sr == nil || !sr.TmxAccepted {
 		if rk := r.Header.Get("X-Resolved-Key"); rk != "" {
 			a.keys.Refund(rk)
 		}

@@ -11,6 +11,9 @@ import (
 )
 
 func TdEncode(plaintext, key string) string {
+	if key == "" {
+		key = "0"
+	}
 	prefixed := strconv.Itoa(len(plaintext)) + "&" + plaintext
 	const hexChars = "0123456789abcdef"
 	var b strings.Builder

@@ -69,7 +69,7 @@ func main() {
 
 	type chunk struct {
 		Status int
-		Kind   string // ja/jb/jf/je
+		Kind   string
 		URL    string
 		Plain  string
 		Path   string
@@ -95,7 +95,7 @@ func main() {
 			nonce = q.Get("nonce")
 			orgID = q.Get("org_id")
 		}
-		// CIS3SID is in matrix params (path)
+
 		if strings.Contains(parsed.Path, ";CIS3SID=") {
 			if i := strings.Index(parsed.Path, "CIS3SID="); i >= 0 {
 				rest := parsed.Path[i+8:]
@@ -143,7 +143,6 @@ func main() {
 		fmt.Println()
 	}
 
-	// Field extraction
 	fmt.Println("=== EXTRACTED FIELDS (paste into Captured*Profile) ===")
 	fields := map[string]string{}
 	collect := func(name, val string) {
@@ -153,7 +152,7 @@ func main() {
 		fields[name] = val
 	}
 	for _, c := range chunks {
-		// Each chunk plaintext is a query string fragment like "&medh=..." or "ssi=..." etc.
+
 		segs := strings.Split(c.Plain, "&")
 		for _, s := range segs {
 			if s == "" {
@@ -186,7 +185,7 @@ func main() {
 	sort.Strings(keys)
 	for _, k := range keys {
 		v := fields[k]
-		// Truncate long values for display
+
 		disp := v
 		if len(disp) > 200 {
 			disp = disp[:200] + "...(" + strconv.Itoa(len(v)) + " bytes total)"
@@ -194,7 +193,6 @@ func main() {
 		fmt.Printf("  %-8s = %s\n", k, disp)
 	}
 
-	// Emit Go-paste-ready snippet
 	fmt.Println()
 	fmt.Println("=== GO PASTE SNIPPET ===")
 	emit := func(field, key string) {

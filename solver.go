@@ -17,36 +17,36 @@ type Solver struct {
 }
 
 type SolveResult struct {
-	OrgID            string
-	SessionID        string
-	Host             string
-	BootstrapURL     string
-	BootstrapOK      bool
-	BootstrapLen     int
-	BootstrapMs      int64
-	ClearOK          bool
-	ClearMs          int64
-	StringTable      map[string]string
-	ScriptInfo       *ScriptInfo
-	Calls            int
-	Successful       int
-	TotalMs          int64
-	GenURLs          int
-	ReplayOK         int
-	ReplayFail       int
-	TmxStarted       bool
-	ThxGuid          string
-	TmxGuid          string
-	TmxNonce         string
-	TmxAccepted      bool
-	CheckJSURL       string
-	CheckJSStatus    int
-	CheckJSLen       int
-	SubmissionTable  *SubmissionTable
-	FpPostStatus     int
-	FpPostLen        int
-	FpPostOK         bool
-	FpBodyLen        int
+	OrgID           string
+	SessionID       string
+	Host            string
+	BootstrapURL    string
+	BootstrapOK     bool
+	BootstrapLen    int
+	BootstrapMs     int64
+	ClearOK         bool
+	ClearMs         int64
+	StringTable     map[string]string
+	ScriptInfo      *ScriptInfo
+	Calls           int
+	Successful      int
+	TotalMs         int64
+	GenURLs         int
+	ReplayOK        int
+	ReplayFail      int
+	TmxStarted      bool
+	ThxGuid         string
+	TmxGuid         string
+	TmxNonce        string
+	TmxAccepted     bool
+	CheckJSURL      string
+	CheckJSStatus   int
+	CheckJSLen      int
+	SubmissionTable *SubmissionTable
+	FpPostStatus    int
+	FpPostLen       int
+	FpPostOK        bool
+	FpBodyLen       int
 }
 
 func NewSolver(proxy string, verbose bool, profile *Profile) (*Solver, error) {
@@ -97,7 +97,10 @@ func (s *Solver) SolveDeep(orgID, host, sessionID, referer string, mobileConf bo
 	var bootstrapURL string
 	var body []byte
 	var st1 int
-	var hdrs1 interface{ Get(string) string; Values(string) []string }
+	var hdrs1 interface {
+		Get(string) string
+		Values(string) []string
+	}
 	var err error
 	if mobileConf {
 		bootstrapURL = fmt.Sprintf("https://%s/fp/mobile/conf?org_id=%s&session_id=%s",
@@ -176,12 +179,12 @@ func (s *Solver) SolveDeep(orgID, host, sessionID, referer string, mobileConf bo
 	res.TmxStarted = true
 
 	var (
-		st2, stC                 int
-		checkBody                []byte
-		hdrsC                    fhttp.Header
-		errC                     error
-		clearMs, checkMs         int64
-		bootWg                   sync.WaitGroup
+		st2, stC         int
+		checkBody        []byte
+		hdrsC            fhttp.Header
+		errC             error
+		clearMs, checkMs int64
+		bootWg           sync.WaitGroup
 	)
 	bootWg.Add(2)
 	t1 := time.Now()
@@ -244,6 +247,12 @@ func (s *Solver) SolveDeep(orgID, host, sessionID, referer string, mobileConf bo
 	s.logf("    [tbl] org=%s sid=%s nonce=%s", tbl.OrgID, tbl.SessionID, tbl.Nonce)
 	s.logf("    [tbl] clear3.png = %s", trimStr(tbl.Clear3PNG, 130))
 
+	if tbl.SessionID == "" {
+		tbl.SessionID = sessionID
+	}
+	if tbl.OrgID == "" {
+		tbl.OrgID = orgID
+	}
 	sessionProfile := SynthesizeProfile(s.profile, tbl.SessionID)
 
 	builder := &FpBuilder{
@@ -323,7 +332,7 @@ func trimStr(s string, n int) string {
 	return s[:n] + "..."
 }
 
-func (s *Solver) Solve(orgID, host, referer string) (*SolveResult, error) {
+func (s *Solver) Solve(orgID, host, referer, sessionID string) (*SolveResult, error) {
 	if orgID == "" {
 		orgID = "usllpic0"
 	}
@@ -333,7 +342,9 @@ func (s *Solver) Solve(orgID, host, referer string) (*SolveResult, error) {
 	if referer == "" {
 		referer = "https://www.example.com/"
 	}
-	sessionID := RandomLowerHex(16)
+	if sessionID == "" {
+		sessionID = RandomLowerHex(16)
+	}
 
 	res := &SolveResult{
 		OrgID:       orgID,

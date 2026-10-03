@@ -26,6 +26,7 @@ func main() {
 	verifyFlag := flag.Bool("verify", false, "after solving, hit Walmart login flow and report response shape (Tier-5 verification)")
 	verifyEmail := flag.String("verify-email", "test_throwaway_2026@example.com", "test email for Walmart user-check")
 	mobileConf := flag.Bool("mobile-conf", false, "use /fp/mobile/conf bootstrap (Kleinanzeigen-style mobile SDK flow)")
+	session := flag.String("session", "", "supply the session_id / profilingId to profile (e.g. the cart's fraudPrevention.profilingId). Empty = generate a random one.")
 	selfVerify := flag.Bool("self-verify", false, "after solving, run TMX self-verify probes (thx_guid stability, h64 canary, chunk replay) and print risk verdict")
 	serve := flag.Bool("serve", false, "run as HTTP API server with admin panel")
 	addr := flag.String("addr", ":8080", "API server listen addr (when -serve)")
@@ -36,8 +37,6 @@ func main() {
 	adminPass := flag.String("admin-pass", "anees3232@", "admin panel password")
 	flag.Parse()
 
-	// Railway / Heroku / Render inject $PORT and expect the app to bind it.
-	// When present, force server mode and bind that port so the deploy is reachable.
 	if envPort := os.Getenv("PORT"); envPort != "" {
 		*serve = true
 		*addr = ":" + envPort
@@ -100,9 +99,9 @@ func main() {
 		var res *SolveResult
 		var err error
 		if *deep {
-			res, err = s.SolveDeep(*org, *host, "", *referer, *mobileConf)
+			res, err = s.SolveDeep(*org, *host, *session, *referer, *mobileConf)
 		} else {
-			res, err = s.Solve(*org, *host, *referer)
+			res, err = s.Solve(*org, *host, *referer, *session)
 		}
 		if err != nil {
 			fail("solve: %v", err)
@@ -117,29 +116,29 @@ func main() {
 
 		if *jsonOut {
 			out := map[string]any{
-				"success":           res.Successful == res.Calls,
-				"org_id":            res.OrgID,
-				"session_id":        res.SessionID,
-				"host":              res.Host,
-				"bootstrap_ok":      res.BootstrapOK,
-				"bootstrap_len":     res.BootstrapLen,
-				"bootstrap_ms":      res.BootstrapMs,
-				"clear_ok":          res.ClearOK,
-				"clear_ms":          res.ClearMs,
-				"calls":             res.Calls,
-				"successful":        res.Successful,
-				"string_table":      len(res.StringTable),
-				"profile":           profileLabel(prof),
-				"total_ms":          res.TotalMs,
-				"thx_guid":          res.ThxGuid,
-				"tmx_guid":          res.TmxGuid,
-				"tmx_nonce":         res.TmxNonce,
-				"tmx_accepted":      res.TmxAccepted,
-				"check_js_status":  res.CheckJSStatus,
-				"check_js_len":     res.CheckJSLen,
-				"fp_post_status":   res.FpPostStatus,
-				"fp_post_ok":       res.FpPostOK,
-				"fp_body_len":      res.FpBodyLen,
+				"success":         res.Successful == res.Calls,
+				"org_id":          res.OrgID,
+				"session_id":      res.SessionID,
+				"host":            res.Host,
+				"bootstrap_ok":    res.BootstrapOK,
+				"bootstrap_len":   res.BootstrapLen,
+				"bootstrap_ms":    res.BootstrapMs,
+				"clear_ok":        res.ClearOK,
+				"clear_ms":        res.ClearMs,
+				"calls":           res.Calls,
+				"successful":      res.Successful,
+				"string_table":    len(res.StringTable),
+				"profile":         profileLabel(prof),
+				"total_ms":        res.TotalMs,
+				"thx_guid":        res.ThxGuid,
+				"tmx_guid":        res.TmxGuid,
+				"tmx_nonce":       res.TmxNonce,
+				"tmx_accepted":    res.TmxAccepted,
+				"check_js_status": res.CheckJSStatus,
+				"check_js_len":    res.CheckJSLen,
+				"fp_post_status":  res.FpPostStatus,
+				"fp_post_ok":      res.FpPostOK,
+				"fp_body_len":     res.FpBodyLen,
 			}
 			b, _ := json.Marshal(out)
 			fmt.Println(string(b))
@@ -270,7 +269,7 @@ func pickProfile(name string, mobile bool) *Profile {
 	case "chrome-android", "android", "mobile-chrome", "mobile":
 		return CapturedChromeAndroidProfile()
 	case "safari-ios", "ios", "iphone", "mobile-safari":
-		// No real iOS capture available; mobile Chrome is closest (touch + mobile UA hints).
+
 		return CapturedChromeAndroidProfile()
 	case "chrome-windows", "windows", "chrome":
 		return CapturedChromeWindowsProfile()

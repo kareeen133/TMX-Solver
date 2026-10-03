@@ -42,34 +42,34 @@ type Profile struct {
 	BatteryCharging bool
 	IsMobile        bool
 
-	Ex3      string
-	Ex4      string
-	Ex5      string
-	Ex6      string
-	Ex6s     string
-	Ex7      string
-	Ex7s     string
-	GLH      string
-	GLHH     string
-	MedH     string
-	SSIH     string
-	LSAH     string
-	HBD      string
-	AudH     string
-	MathR    string
-	MtH      string
-	PluginH  string
-	HistH    string
-	BatSt    string
-	UAH      string
-	UAL      string
-	UIStl    string
-	PM       string
-	PEnum    string
-	WeI      string
-	JsoLong  string
-	JsbLong  string
-	CCD      string
+	Ex3     string
+	Ex4     string
+	Ex5     string
+	Ex6     string
+	Ex6s    string
+	Ex7     string
+	Ex7s    string
+	GLH     string
+	GLHH    string
+	MedH    string
+	SSIH    string
+	LSAH    string
+	HBD     string
+	AudH    string
+	MathR   string
+	MtH     string
+	PluginH string
+	HistH   string
+	BatSt   string
+	UAH     string
+	UAL     string
+	UIStl   string
+	PM      string
+	PEnum   string
+	WeI     string
+	JsoLong string
+	JsbLong string
+	CCD     string
 
 	DprCSV    string
 	DSTOffset int
@@ -112,30 +112,30 @@ func CapturedEdge148WindowsProfile() *Profile {
 		BatteryCharging: true,
 		IsMobile:        false,
 
-		Ex3:     "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
-		Ex4:     "f35c32b3eeca65a856565a60664e29a1",
-		Ex5:     "061909363ac211314613dc2dbb387668",
-		Ex6:     "551f76a6d2d50ea758c7fdd228c97123",
-		Ex6s:    "1399942794901",
-		Ex7:     "4ba93e9892926cfde2be983d02e9284a",
-		Ex7s:    "1514661666859",
-		GLH:     "32c3b4a95e053c5e77e279d817fb917580de081b",
-		GLHH:    "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
-		MedH:    "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
-		SSIH:    "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
-		LSAH:    "ffe63f49c8be4f8ba77f0ada639a24fb",
-		HBD:     ":wd_1:ch_1:pq_0:pi_5:la_1:ln_2:pc_0:ph_0:mi_0:sl_0:cw_1:sv_0,941,1051,0,10,0,0,1536,960,1536,960,32,32,1.25:rt_false,true,true,true:ic_true:ps_default,prompt",
-		AudH:    "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
-		MathR:   "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
-		MtH:     "27f51d3149e6bf209b66bd387b0af3c4",
-		PluginH: "e802dfa555193f4ebe8993eb4a99290d",
-		HistH:   "67a7eb2f315a8ff6473cfd37279b1c49",
-		BatSt:   `{"level":1.00,"status":"charging"}`,
-		UAH:     `{"architecture":"x86","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Microsoft Edge","version":"148"},{"brand":"Not/A)Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.7778.97"},{"brand":"Microsoft Edge","version":"148.0.3967.54"},{"brand":"Not/A)Brand","version":"99.0.0.0"}],"mobile":false,"model":"","platform":"Windows","platformVersion":"19.0.0","wow64":false}`,
-		UAL:     `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Microsoft Edge","version":"148"},{"brand":"Not/A)Brand","version":"99"}],"mobile":false,"platform":"Windows"}`,
-		UIStl:   "light",
-		PM:      "no",
-		PEnum:   "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
+		Ex3:       "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
+		Ex4:       "f35c32b3eeca65a856565a60664e29a1",
+		Ex5:       "061909363ac211314613dc2dbb387668",
+		Ex6:       "551f76a6d2d50ea758c7fdd228c97123",
+		Ex6s:      "1399942794901",
+		Ex7:       "4ba93e9892926cfde2be983d02e9284a",
+		Ex7s:      "1514661666859",
+		GLH:       "32c3b4a95e053c5e77e279d817fb917580de081b",
+		GLHH:      "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
+		MedH:      "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
+		SSIH:      "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
+		LSAH:      "ffe63f49c8be4f8ba77f0ada639a24fb",
+		HBD:       ":wd_1:ch_1:pq_0:pi_5:la_1:ln_2:pc_0:ph_0:mi_0:sl_0:cw_1:sv_0,941,1051,0,10,0,0,1536,960,1536,960,32,32,1.25:rt_false,true,true,true:ic_true:ps_default,prompt",
+		AudH:      "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
+		MathR:     "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
+		MtH:       "27f51d3149e6bf209b66bd387b0af3c4",
+		PluginH:   "e802dfa555193f4ebe8993eb4a99290d",
+		HistH:     "67a7eb2f315a8ff6473cfd37279b1c49",
+		BatSt:     `{"level":1.00,"status":"charging"}`,
+		UAH:       `{"architecture":"x86","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Microsoft Edge","version":"148"},{"brand":"Not/A)Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.7778.97"},{"brand":"Microsoft Edge","version":"148.0.3967.54"},{"brand":"Not/A)Brand","version":"99.0.0.0"}],"mobile":false,"model":"","platform":"Windows","platformVersion":"19.0.0","wow64":false}`,
+		UAL:       `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Microsoft Edge","version":"148"},{"brand":"Not/A)Brand","version":"99"}],"mobile":false,"platform":"Windows"}`,
+		UIStl:     "light",
+		PM:        "no",
+		PEnum:     "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
 		JsoLong:   "Windows 11",
 		JsbLong:   "Edge 148",
 		CCD:       "",
@@ -181,30 +181,30 @@ func CapturedChromeWindowsProfile() *Profile {
 		BatteryCharging: true,
 		IsMobile:        false,
 
-		Ex3:     "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
-		Ex4:     "f35c32b3eeca65a856565a60664e29a1",
-		Ex5:     "061909363ac211314613dc2dbb387668",
-		Ex6:     "551f76a6d2d50ea758c7fdd228c97123",
-		Ex6s:    "1399942794901",
-		Ex7:     "4ba93e9892926cfde2be983d02e9284a",
-		Ex7s:    "1514661666859",
-		GLH:     "32c3b4a95e053c5e77e279d817fb917580de081b",
-		GLHH:    "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
-		MedH:    "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
-		SSIH:    "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
-		LSAH:    "4d8e2011a9d84c03aa0e236b21c47191",
-		HBD:     ":wd_1:ch_1:pq_0:pi_5:la_1:ln_1:pc_0:ph_0:mi_0:sl_0:cw_1:sv_0,890,1298,0,10,0,0,1280,800,1280,800,32,32,1.0000000149011612:rt_false,true,true,true:ic_true:ps_default,prompt",
-		AudH:    "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
-		MathR:   "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
-		MtH:     "27f51d3149e6bf209b66bd387b0af3c4",
-		PluginH: "e802dfa555193f4ebe8993eb4a99290d",
-		HistH:   "781d5d49e6bdfc2af4aba83112ace15d",
-		BatSt:   `{"level":1.00,"status":"charging"}`,
-		UAH:     `{"architecture":"x86","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.0.0"},{"brand":"Google Chrome","version":"148.0.0.0"},{"brand":"Not?A_Brand","version":"99.0.0.0"}],"mobile":false,"model":"","platform":"Windows","platformVersion":"10.0","wow64":false}`,
-		UAL:     `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"mobile":false,"platform":"Windows"}`,
-		UIStl:   "light",
-		PM:      "no",
-		PEnum:   "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
+		Ex3:       "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
+		Ex4:       "f35c32b3eeca65a856565a60664e29a1",
+		Ex5:       "061909363ac211314613dc2dbb387668",
+		Ex6:       "551f76a6d2d50ea758c7fdd228c97123",
+		Ex6s:      "1399942794901",
+		Ex7:       "4ba93e9892926cfde2be983d02e9284a",
+		Ex7s:      "1514661666859",
+		GLH:       "32c3b4a95e053c5e77e279d817fb917580de081b",
+		GLHH:      "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
+		MedH:      "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
+		SSIH:      "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
+		LSAH:      "4d8e2011a9d84c03aa0e236b21c47191",
+		HBD:       ":wd_1:ch_1:pq_0:pi_5:la_1:ln_1:pc_0:ph_0:mi_0:sl_0:cw_1:sv_0,890,1298,0,10,0,0,1280,800,1280,800,32,32,1.0000000149011612:rt_false,true,true,true:ic_true:ps_default,prompt",
+		AudH:      "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
+		MathR:     "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
+		MtH:       "27f51d3149e6bf209b66bd387b0af3c4",
+		PluginH:   "e802dfa555193f4ebe8993eb4a99290d",
+		HistH:     "781d5d49e6bdfc2af4aba83112ace15d",
+		BatSt:     `{"level":1.00,"status":"charging"}`,
+		UAH:       `{"architecture":"x86","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.0.0"},{"brand":"Google Chrome","version":"148.0.0.0"},{"brand":"Not?A_Brand","version":"99.0.0.0"}],"mobile":false,"model":"","platform":"Windows","platformVersion":"10.0","wow64":false}`,
+		UAL:       `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"mobile":false,"platform":"Windows"}`,
+		UIStl:     "light",
+		PM:        "no",
+		PEnum:     "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
 		JsoLong:   "Windows 11",
 		JsbLong:   "Chrome 148",
 		CCD:       "1",
@@ -250,30 +250,30 @@ func CapturedChromeAndroidProfile() *Profile {
 		BatteryCharging: true,
 		IsMobile:        true,
 
-		Ex3:     "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
-		Ex4:     "f35c32b3eeca65a856565a60664e29a1",
-		Ex5:     "061909363ac211314613dc2dbb387668",
-		Ex6:     "551f76a6d2d50ea758c7fdd228c97123",
-		Ex6s:    "1399942794901",
-		Ex7:     "4ba93e9892926cfde2be983d02e9284a",
-		Ex7s:    "1514661666859",
-		GLH:     "32c3b4a95e053c5e77e279d817fb917580de081b",
-		GLHH:    "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
-		MedH:    "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
-		SSIH:    "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
-		LSAH:    "3324a11d6ca64801a822e2d9d19515cc",
-		HBD:     ":wd_1:ch_1:pq_0:pi_5:la_1:ln_1:pc_0:ph_0:mi_0:te_1:sl_0:cw_1:sv_0,915,412,0,0,0,0,412,915,412,915,32,32,2.6249998807907104:rt_false,true,true,true:ic_true:ps_default,prompt",
-		AudH:    "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
-		MathR:   "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
-		MtH:     "27f51d3149e6bf209b66bd387b0af3c4",
-		PluginH: "e802dfa555193f4ebe8993eb4a99290d",
-		HistH:   "555a035e67f75078f200fef01bef23d7",
-		BatSt:   `{"level":1.00,"status":"charging"}`,
-		UAH:     `{"architecture":"arm","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.0.0"},{"brand":"Google Chrome","version":"148.0.0.0"},{"brand":"Not?A_Brand","version":"99.0.0.0"}],"mobile":true,"model":"","platform":"Android","platformVersion":"13","wow64":false}`,
-		UAL:     `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"mobile":true,"platform":"Android"}`,
-		UIStl:   "light",
-		PM:      "no",
-		PEnum:   "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
+		Ex3:       "c5c4ab7ba5f5046a681dba4af707b303c083ee49",
+		Ex4:       "f35c32b3eeca65a856565a60664e29a1",
+		Ex5:       "061909363ac211314613dc2dbb387668",
+		Ex6:       "551f76a6d2d50ea758c7fdd228c97123",
+		Ex6s:      "1399942794901",
+		Ex7:       "4ba93e9892926cfde2be983d02e9284a",
+		Ex7s:      "1514661666859",
+		GLH:       "32c3b4a95e053c5e77e279d817fb917580de081b",
+		GLHH:      "9fd84c9cb5446da8ec06f32c00ef379ec5c34e33",
+		MedH:      "(1,1,1,e12ead95566221e7c4e320e56363dcb477a3c93a4a8510beb25f01bca07d4e8d)",
+		SSIH:      "1,1,0,1107a7cfa352275b7770e6e51a09cf838c0593df",
+		LSAH:      "3324a11d6ca64801a822e2d9d19515cc",
+		HBD:       ":wd_1:ch_1:pq_0:pi_5:la_1:ln_1:pc_0:ph_0:mi_0:te_1:sl_0:cw_1:sv_0,915,412,0,0,0,0,412,915,412,915,32,32,2.6249998807907104:rt_false,true,true,true:ic_true:ps_default,prompt",
+		AudH:      "cefbae478677f02fbbd973617692dbd9c6450bf5641669ebef1595ab745a2117",
+		MathR:     "71f548e4b3608bfdfb89c996ffd4f70f12ae3d66adf429356b9f3bc677b2fe2f",
+		MtH:       "27f51d3149e6bf209b66bd387b0af3c4",
+		PluginH:   "e802dfa555193f4ebe8993eb4a99290d",
+		HistH:     "555a035e67f75078f200fef01bef23d7",
+		BatSt:     `{"level":1.00,"status":"charging"}`,
+		UAH:       `{"architecture":"arm","bitness":"64","brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"fullVersionList":[{"brand":"Chromium","version":"148.0.0.0"},{"brand":"Google Chrome","version":"148.0.0.0"},{"brand":"Not?A_Brand","version":"99.0.0.0"}],"mobile":true,"model":"","platform":"Android","platformVersion":"13","wow64":false}`,
+		UAL:       `{"brands":[{"brand":"Chromium","version":"148"},{"brand":"Google Chrome","version":"148"},{"brand":"Not?A_Brand","version":"99"}],"mobile":true,"platform":"Android"}`,
+		UIStl:     "light",
+		PM:        "no",
+		PEnum:     "plugin_flash^false!plugin_windows_media_player^false!plugin_adobe_acrobat^false!plugin_quicktime^false!plugin_shockwave^false!plugin_realplayer^false!plugin_vlc_player^false!plugin_devalvr^false!plugin_svg_viewer^false!plugin_java^false",
 		JsoLong:   "Android 13",
 		JsbLong:   "Chrome 148",
 		CCD:       "4",

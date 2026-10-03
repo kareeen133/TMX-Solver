@@ -13,7 +13,7 @@ Set-Location $PSScriptRoot
 $port = ($Addr -replace '^.*:', '')
 if (-not $port) { $port = "8080" }
 
-$serverArgs = @("run", ".", "-serve", "-addr", $Addr, "-admin-user", $AdminUser, "-admin-pass", $AdminPass)
+$serverArgs = @("run", "-buildvcs=false", ".", "-serve", "-addr", $Addr, "-admin-user", $AdminUser, "-admin-pass", $AdminPass)
 if ($ApiKey) { $serverArgs += @("-api-key", $ApiKey) }
 if ($Proxy)  { $serverArgs += @("-proxy", $Proxy) }
 

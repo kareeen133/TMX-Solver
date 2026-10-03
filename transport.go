@@ -8,19 +8,19 @@ import (
 	"strings"
 	"time"
 
+	fhttp "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/bogdanfinn/tls-client/profiles"
-	fhttp "github.com/bogdanfinn/fhttp"
 )
 
 type Transport struct {
-	c       tls_client.HttpClient
-	jar     tls_client.CookieJar
-	UA      string
-	SecCH   string
-	Lang    string
-	Plat    string
-	Proxy   string
+	c     tls_client.HttpClient
+	jar   tls_client.CookieJar
+	UA    string
+	SecCH string
+	Lang  string
+	Plat  string
+	Proxy string
 }
 
 func NewTransport(proxy string) (*Transport, error) {
@@ -43,12 +43,12 @@ func NewTransportWithProfile(proxy string, tlsProfile profiles.ClientProfile) (*
 		return nil, err
 	}
 	return &Transport{
-		c:    c,
-		jar:  jar,
-		UA:   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+		c:     c,
+		jar:   jar,
+		UA:    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
 		SecCH: `"Chromium";v="146", "Google Chrome";v="146", "Not?A_Brand";v="99"`,
-		Lang: "en-US,en;q=0.9",
-		Plat: `"Windows"`,
+		Lang:  "en-US,en;q=0.9",
+		Plat:  `"Windows"`,
 		Proxy: proxy,
 	}, nil
 }
@@ -175,7 +175,6 @@ func (t *Transport) Post(targetURL, referer, contentType string, body []byte) (i
 	rb, _ := io.ReadAll(resp.Body)
 	return resp.StatusCode, rb, resp.Header, nil
 }
-
 
 func (t *Transport) GetCookie(domain, name string) string {
 	u, _ := url.Parse("https://" + domain)

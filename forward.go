@@ -11,6 +11,7 @@ import (
 
 type ForwardRequest struct {
 	OrgID         string            `json:"org_id"`
+	SessionID     string            `json:"session_id"`
 	Host          string            `json:"host"`
 	Referer       string            `json:"referer"`
 	Target        string            `json:"target"`
@@ -24,24 +25,24 @@ type ForwardRequest struct {
 }
 
 type ForwardResponse struct {
-	OK            bool              `json:"ok"`
-	Error         string            `json:"error,omitempty"`
-	SessionID     string            `json:"session_id"`
-	OrgID         string            `json:"org_id"`
-	Host          string            `json:"host"`
-	ThxGuid       string            `json:"thx_guid,omitempty"`
-	TmxGuid       string            `json:"tmx_guid,omitempty"`
-	TmxNonce      string            `json:"tmx_nonce,omitempty"`
-	TmxAccepted   bool              `json:"tmx_accepted"`
-	SolveMs       int64             `json:"solve_ms"`
-	UpstreamMs    int64             `json:"upstream_ms"`
-	Status        int               `json:"status"`
-	ResponseHdrs  map[string]string `json:"response_headers"`
-	Body          string            `json:"body"`
-	BodyLen       int               `json:"body_len"`
-	FinalURL      string            `json:"final_url,omitempty"`
-	UsedUA        string            `json:"used_ua"`
-	UsedProfile   string            `json:"used_profile"`
+	OK           bool              `json:"ok"`
+	Error        string            `json:"error,omitempty"`
+	SessionID    string            `json:"session_id"`
+	OrgID        string            `json:"org_id"`
+	Host         string            `json:"host"`
+	ThxGuid      string            `json:"thx_guid,omitempty"`
+	TmxGuid      string            `json:"tmx_guid,omitempty"`
+	TmxNonce     string            `json:"tmx_nonce,omitempty"`
+	TmxAccepted  bool              `json:"tmx_accepted"`
+	SolveMs      int64             `json:"solve_ms"`
+	UpstreamMs   int64             `json:"upstream_ms"`
+	Status       int               `json:"status"`
+	ResponseHdrs map[string]string `json:"response_headers"`
+	Body         string            `json:"body"`
+	BodyLen      int               `json:"body_len"`
+	FinalURL     string            `json:"final_url,omitempty"`
+	UsedUA       string            `json:"used_ua"`
+	UsedProfile  string            `json:"used_profile"`
 }
 
 func (s *Solver) Forward(req *ForwardRequest) *ForwardResponse {
@@ -68,9 +69,9 @@ func (s *Solver) Forward(req *ForwardRequest) *ForwardResponse {
 	var sr *SolveResult
 	var err error
 	if req.Deep {
-		sr, err = s.SolveDeep(req.OrgID, req.Host, "", req.Referer, false)
+		sr, err = s.SolveDeep(req.OrgID, req.Host, req.SessionID, req.Referer, false)
 	} else {
-		sr, err = s.Solve(req.OrgID, req.Host, req.Referer)
+		sr, err = s.Solve(req.OrgID, req.Host, req.Referer, req.SessionID)
 	}
 	resp.SolveMs = time.Since(t0).Milliseconds()
 	if err != nil {

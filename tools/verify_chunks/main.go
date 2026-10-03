@@ -1,11 +1,5 @@
 package main
 
-// Build the same chunks the live solver builds for chrome-windows, decode them
-// back via td_2b, and compare the resulting plaintexts to the live HAR capture
-// at captures/chrome_win.har. This proves the solver is byte-faithful to a real
-// browser session (modulo per-session random values: session_id, nonce, CIS3SID,
-// sid_rnd, sid_date, sid_sig, sid_key).
-
 import (
 	"encoding/json"
 	"fmt"
@@ -58,8 +52,6 @@ func tdDecode(ciphertextHex, key string) (string, error) {
 	return s, nil
 }
 
-// Load HAR and turn it into { fieldName -> value } map by decoding all
-// chunks with the given session_id key.
 func loadHarFields(harPath string) map[string]string {
 	data, err := os.ReadFile(harPath)
 	must(err)
@@ -126,8 +118,6 @@ func loadHarFields(harPath string) map[string]string {
 	return fields
 }
 
-// Run the live solver with verbose logging and capture its outgoing chunk URLs
-// by parsing stdout. Then decode them.
 func runSolverAndCapture(profile, target string) (map[string]string, []string) {
 	tmp := os.TempDir()
 	dumpPath := tmp + string(os.PathSeparator) + "tmx_solver_dump_" + profile + ".txt"
@@ -223,13 +213,12 @@ func main() {
 
 	fmt.Printf("solver dumped %d outgoing chunks\n\n", len(urls))
 
-	// Per-session randoms — exclude from match check.
 	skip := map[string]bool{
 		"sid_rnd": true, "sid_date": true, "sid_sig": true, "sid_key": true,
-		"sid_type": true, "lh": true, "dr": true, // page URL differs (h.online-metrix.net wants the embedding page; capture used localhost, solver uses customer referer)
-		"jftn": true, "jfh": true, // computed over per-session hbd payload
-		"hh": true, // history depth — varies per session
-		"wei": true, // egress IP — observed by TMX, varies
+		"sid_type": true, "lh": true, "dr": true,
+		"jftn": true, "jfh": true,
+		"hh":  true,
+		"wei": true,
 	}
 
 	keys := map[string]bool{}

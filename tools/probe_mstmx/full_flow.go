@@ -11,9 +11,9 @@ import (
 	"net/url"
 	"strings"
 
+	fhttp "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/bogdanfinn/tls-client/profiles"
-	fhttp "github.com/bogdanfinn/fhttp"
 )
 
 func ruuid() string {
@@ -24,7 +24,7 @@ func ruuid() string {
 	h := hex.EncodeToString(b)
 	return fmt.Sprintf("%s-%s-%s-%s-%s", h[0:8], h[8:12], h[12:16], h[16:20], h[20:32])
 }
-func rhex(n int) string { b := make([]byte, n/2); rand.Read(b); return hex.EncodeToString(b) }
+func rhex(n int) string  { b := make([]byte, n/2); rand.Read(b); return hex.EncodeToString(b) }
 func ruhex(n int) string { return strings.ToUpper(rhex(n)) }
 
 func main() {
@@ -82,11 +82,11 @@ func main() {
 	fmt.Println("\n=== STEP 1: FPT bootstrap (gets MUID + fptctx2 cookies) ===")
 	url1 := fmt.Sprintf("https://fpt.live.com/?session_id=%s&CustomerId=%s&PageId=SI", sid, cid)
 	st1, body1, sc1 := hit("fpt-bootstrap", url1, map[string]string{
-		"accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-		"sec-fetch-dest":  "iframe",
-		"sec-fetch-mode":  "navigate",
-		"sec-fetch-site":  "cross-site",
-		"referer":         "https://signup.live.com/",
+		"accept":         "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+		"sec-fetch-dest": "iframe",
+		"sec-fetch-mode": "navigate",
+		"sec-fetch-site": "cross-site",
+		"referer":        "https://signup.live.com/",
 	})
 	fmt.Println("  status :", st1, " body:", len(body1), "bytes")
 	for _, c := range sc1 {
